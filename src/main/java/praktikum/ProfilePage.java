@@ -13,7 +13,7 @@ public class ProfilePage {
     private WebDriver driver;
     private final WebDriverWait wait;
 
-    private By profileHeader = By.xpath("//*[@id='root']/div/main/div/nav/p");
+    private By profileHeader = By.xpath("//p[text()='В этом разделе вы можете изменить свои персональные данные']");
     private By logoutButton = By.xpath("//button[text()='Выход']");
     private final By modalOverlay = By.className("Modal_modal_overlay__x2ZCr");
 
