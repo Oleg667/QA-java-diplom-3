@@ -23,6 +23,12 @@ public class MainPage {
     private final By fillingsTab = By.xpath("//span[text()='Начинки']/parent::div");
     protected By modalOverlay = By.className("Modal_modal_overlay__x2ZCr");
 
+    // Локаторы активных вкладок
+    private final By activeBunsTab = By.xpath("//div[contains(@class, 'tab_tab_type_current')]//span[text()='Булки']");
+    private final By activeSaucesTab = By.xpath("//div[contains(@class, 'tab_tab_type_current')]//span[text()='Соусы']");
+    private final By activeFillingsTab = By.xpath("//div[contains(@class, 'tab_tab_type_current')]//span[text()='Начинки']");
+
+
     public MainPage(WebDriver driver) {
         this.driver = driver;
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
@@ -91,4 +97,21 @@ public class MainPage {
     public void clickFillingsTab() {
         wait.until(ExpectedConditions.elementToBeClickable(fillingsTab)).click();
     }
+
+    // Методы для получения активных вкладок
+    @Step("Получить активную вкладку 'Булки'")
+    public WebElement getActiveBunsTab() {
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(activeBunsTab));
+    }
+
+    @Step("Получить активную вкладку 'Соусы'")
+    public WebElement getActiveSaucesTab() {
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(activeSaucesTab));
+    }
+
+    @Step("Получить активную вкладку 'Начинки'")
+    public WebElement getActiveFillingsTab() {
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(activeFillingsTab));
+    }
+
 }

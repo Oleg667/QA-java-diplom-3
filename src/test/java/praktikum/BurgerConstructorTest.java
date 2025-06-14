@@ -34,8 +34,7 @@ public class BurgerConstructorTest {
         MainPage mainPage = new MainPage(driver);
         mainPage.clickSaucesTab();
 
-        WebElement activeSaucesTab = wait.until(ExpectedConditions.visibilityOfElementLocated(
-                By.xpath("//div[contains(@class, 'tab_tab_type_current')]//span[text()='Соусы']")));
+        WebElement activeSaucesTab = mainPage.getActiveSaucesTab(); // заменено: теперь получаем активную вкладку через MainPage
         assertTrue("Раздел 'Соусы' должен быть активным", activeSaucesTab.isDisplayed());
     }
 
@@ -48,8 +47,7 @@ public class BurgerConstructorTest {
         MainPage mainPage = new MainPage(driver);
         mainPage.clickFillingsTab();
 
-        WebElement activeFillingsTab = wait.until(ExpectedConditions.visibilityOfElementLocated(
-                By.xpath("//div[contains(@class, 'tab_tab_type_current')]//span[text()='Начинки']")));
+        WebElement activeFillingsTab = mainPage.getActiveFillingsTab(); // заменено: теперь получаем активную вкладку через MainPage
         assertTrue("Раздел 'Начинки' должен быть активным", activeFillingsTab.isDisplayed());
     }
 
@@ -63,14 +61,12 @@ public class BurgerConstructorTest {
 
         // Сначала переключимся на другой раздел, например, "Соусы"
         mainPage.clickSaucesTab();
-        wait.until(ExpectedConditions.visibilityOfElementLocated(
-                By.xpath("//div[contains(@class, 'tab_tab_type_current')]//span[text()='Соусы']")));
+        mainPage.getActiveSaucesTab(); // заменено: ожидание через метод MainPage вместо явного локатора
 
         // Теперь снова кликнем на "Булки"
         mainPage.clickBunsTab();
 
-        WebElement activeBunsTab = wait.until(ExpectedConditions.visibilityOfElementLocated(
-                By.xpath("//div[contains(@class, 'tab_tab_type_current')]//span[text()='Булки']")));
+        WebElement activeBunsTab = mainPage.getActiveBunsTab(); // заменено: теперь получаем активную вкладку через MainPage
         assertTrue("Раздел 'Булки' должен быть активным после переключения", activeBunsTab.isDisplayed());
     }
 

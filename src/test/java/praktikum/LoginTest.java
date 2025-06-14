@@ -5,18 +5,29 @@ import io.qameta.allure.junit4.DisplayName;
 import org.junit.*;
 import org.openqa.selenium.WebDriver;
 
+import java.util.UUID;
+
 import static org.junit.Assert.assertTrue;
 
 public class LoginTest {
-    private final String email = "vladtest@yandex.rus";
-    private final String password = "11111111";
-
+    private String email;
+    private final String password = "667667667!!!";
+    private String name;
+    private String accessToken;
     @Rule
     public DriverRule driverRule = new DriverRule();
 
     @Before
-    @Step("Инициализация и открытие браузера")
+    @Step("Создание пользователя через API и открытие браузера")
     public void setUp() {
+        // Генерация уникальных данных
+        name = "usertest" + UUID.randomUUID().toString().substring(0, 6);
+        email = name + "@yandex.ru";
+
+        // Создание пользователя через API
+        UserClient userClient = new UserClient();
+        accessToken = userClient.createUserAndGetToken(name, email, password);
+        // открытие браузера
         WebDriver driver = driverRule.getDriver();
         driver.get(EnvConfig.BASE_URL);
     }
@@ -81,10 +92,16 @@ public class LoginTest {
     }
 
     @After
-    @Step("Закрытие браузера")
+    @Step("Закрытие браузера и удаление пользователя")
     public void tearDown() {
         if (driverRule.getDriver() != null) {
             driverRule.getDriver().quit();
         }
+        if (accessToken != null) {
+            UserClient userClient = new UserClient();
+            userClient.deleteUser(accessToken);
+            accessToken = null;
+        }
     }
+
 }

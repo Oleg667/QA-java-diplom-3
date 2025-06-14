@@ -24,45 +24,7 @@ public class AccountNavigationTest {
         WebDriver driver = driverRule.getDriver();
         driver.get(EnvConfig.BASE_URL);
     }
-//    @Test
-//    @DisplayName("Проверка перехода по клику на «Личный кабинет»")
-//    public void testNavigateToAccountPage() {
-//        WebDriver driver = driverRule.getDriver();
-//        System.out.println("Получен WebDriver");
-//
-//        MainPage mainPage = new MainPage(driver);
-//        System.out.println("Создан объект MainPage");
-//
-//        mainPage.clickLoginButton();
-//        System.out.println("Нажата кнопка Войти на главной странице");
-//
-//        LoginPage loginPage = new LoginPage(driver);
-//        System.out.println("Создан объект LoginPage");
-//
-//        loginPage.login(email, password);
-//        System.out.println("Выполнен вход с email: " + email);
-//
-//        mainPage.clickAccountButton();
-//        System.out.println("Нажата кнопка Личный кабинет");
-//
-//        System.out.println("Ожидается переход на страницу профиля");
-//        new WebDriverWait(driver, Duration.ofSeconds(15))
-//                .until(ExpectedConditions.urlContains("/account/profile"));
-//        System.out.println("Текущий URL: " + driver.getCurrentUrl());
-//
-//        assertTrue(driver.getCurrentUrl().contains("/account/profile"));
-//
-//        ProfilePage profilePage = new ProfilePage(driver);
-//        System.out.println("Создан объект ProfilePage");
-//
-//        boolean headerVisible = profilePage.isProfileHeaderVisible();
-//        System.out.println("Заголовок профиля виден: " + headerVisible);
-//        assertTrue("Профиль не загрузился", headerVisible);
-//
-//        boolean logoutVisible = profilePage.isLogoutButtonVisible();
-//        System.out.println("Кнопка выхода видна: " + logoutVisible);
-//        assertTrue("Кнопка выхода не найдена", logoutVisible);
-//    }
+
 
     @Test
     @DisplayName("Проверка перехода по клику на «Личный кабинет»")
